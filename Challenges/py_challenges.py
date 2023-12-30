@@ -1,4 +1,4 @@
-"""Challenge #1
+"""Challenge #1:
 Capital indexes
 Write a function named capital_indexes. The function takes a single parameter, which is a string. 
 Your function should return a list of all the indexes in the string that have capital letters.
@@ -11,7 +11,7 @@ def capital_indexes(my_string):
             my_list.append(i)
     return my_list
 
-"""Challenge #2 
+"""Challenge #2: 
 Convert a decimal number into binary
 Write a function in Python that accepts a decimal number and returns the equivalent binary number. 
 To make this simple, the decimal number will always be less than 1,024, 
@@ -26,7 +26,7 @@ def decimal_to_binary(decimal: int):
         decimal //= 2 # Division entera, redondea hacia abajo
     return binary
 
-""" Challenge #3 
+""" Challenge #3: 
 Caesar Cipher
 Create a function that can encrypt and decrypt messages using the Caesar cipher. 
 The Caesar cipher is a type of substitution cipher in which each letter in the original text 
@@ -56,7 +56,8 @@ def caesar_cipher(text):
         i += 1
     return cipher_text
 
-""" Bracket Combinations
+""" Challenge #4:
+Bracket Combinations
 Have the function BracketCombinations(num) 
 read num which will be an integer greater than or equal to zero, 
 and return the number of valid combinations that can be formed with num pairs of parentheses. 
@@ -66,22 +67,92 @@ There are 5 total combinations when the input is 3, so your program should retur
 
 def bracket_combinations(num):
     total = 0
-
     def pair_maker(a, c=0):
         nonlocal total
-
         if a == 0 and c == 0:
             total += 1
-
         if a > 0:
             pair_maker(a - 1, c + 1)
-
         if c > 0:
             pair_maker(a, c - 1)
-
     pair_maker(num)
     return total
 
 # Using example
 resultado = bracket_combinations(3)
 print(resultado)
+print('***************************************************************************************')
+
+""" Challenge #5:
+Find Intersection 
+read the array of strings stored in strArr which will contain 2 elements: 
+the first element will represent a list of comma-separated numbers sorted in ascending order, 
+the second element will represent a second list of comma-separated numbers (also sorted). 
+Your goal is to return a comma-separated string containing the numbers 
+that occur in elements of strArr in sorted order. If there is no intersection, 
+return the string false.
+"""
+def find_intersection(strarray):
+    output = ''
+
+    str_1 = strarray[0].split(',')
+    str_2 = strarray[1].split(',')
+    
+    for i in range (len(str_1)):
+        for j in range (len(str_2)):
+            if str_1[i] == str_2[j]:
+                output = output + str_1[i] + ','
+    output = output[:-1]
+    output = output.replace(' ', '')
+
+    return output
+
+# Using example
+print(find_intersection(["1, 3, 4, 7, 13", "1, 2, 4, 13, 15"]))
+print('***************************************************************************************')
+
+""" Challenge #6:
+Question Marks
+take the str string parameter, which will contain single digit numbers, 
+letters, and question marks, 
+and check if there are exactly 3 question marks between every pair of two numbers that add up to 10. 
+If so, then your program should return the string true, 
+otherwise it should return the string false. 
+If there aren't any two numbers that add up to 10 in the string, 
+then your program should return false as well. """
+
+def question_marks(str):
+    output = False
+    pos_num_1 = -1
+    pos_num_2 = -1
+    q_marks = 0
+    flag = 0
+
+    for i in range (len(str)):
+        if pos_num_1 != -1 and str[i].isdigit() == True:
+            pos_num_2 = i
+        elif str[i].isdigit() == True:
+            pos_num_1 = i
+
+        if pos_num_1 != -1 and pos_num_2 != -1:
+            if int(str[pos_num_1]) + int(str[pos_num_2]) == 10 and flag == 0:
+                for j in range (pos_num_1, pos_num_2):
+                    if str[j] == '?':
+                        q_marks = q_marks + 1
+                if q_marks == 3:
+                    output = True  
+                else:
+                    flag = 1
+                    output = False  
+            pos_num_1 = pos_num_2
+            pos_num_2 = -1
+            q_marks = 0
+
+    return output
+
+# Using example
+print(question_marks("9???1???9??1???9"))
+print(question_marks("aa6?9"))
+print(question_marks("acc?7??sss?3rr1??????5"))
+print(question_marks("5??aaaaaaaaaaaaaaaaaaa?5?5"))
+print('***************************************************************************************')

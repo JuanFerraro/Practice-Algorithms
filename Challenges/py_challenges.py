@@ -156,3 +156,52 @@ print(question_marks("aa6?9"))
 print(question_marks("acc?7??sss?3rr1??????5"))
 print(question_marks("5??aaaaaaaaaaaaaaaaaaa?5?5"))
 print('***************************************************************************************')
+
+""" Challenge #7:
+First Reverse
+take the str parameter being passed and return the string in reversed order. 
+For example: if the input string is "Hello World and Coders" 
+then your program should return the string sredoC dna dlroW olleH. """
+
+def first_reverse(str):
+    reverse = ''
+    long = (len(str))
+
+    for i in range (long):
+        reverse = reverse + str[long - 1 - i]
+    
+    return reverse
+
+print(first_reverse('Hola Mundo'))
+print('***************************************************************************************')
+
+""" Challenge #7:
+Tree Constructor
+take the array of strings stored in strArr, which will contain pairs of integers 
+in the following format: (i1,i2), where i1 represents a child node in a tree 
+and the second integer i2 signifies that it is the parent of i1.
+For example: if strArr is ["(1,2)", "(2,4)", "(7,2)"], 
+which you can see forms a proper binary tree. 
+Your program should, in this case, return the string true because a valid binary tree can be formed. 
+If a proper binary tree cannot be formed with the integer pairs, 
+then return the string false. All of the integers within the tree will be unique, 
+which means there can only be one node in the tree with the given integer value. """
+
+def tree_constructor(strArr):
+    
+    parents = [int(s.split(',')[1].replace(')', '')) for s in strArr]
+    
+    for i in range (len(parents)):
+        childs = 0
+        for j in range (len(parents)):
+            if parents[i] == parents[j]:
+                childs = childs + 1
+        if childs > 2:
+            return False
+
+    return True
+
+print(tree_constructor(["(1,2)", "(2,4)", "(5,7)", "(7,2)", "(9,5)"]))
+print(tree_constructor(["(5,6)", "(6,3)", "(2,3)", "(12,5)"]))
+print(tree_constructor(["(10,20)"]))
+print('***************************************************************************************')

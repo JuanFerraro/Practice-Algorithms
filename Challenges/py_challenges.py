@@ -80,6 +80,7 @@ def bracket_combinations(num):
 
 # Using example
 resultado = bracket_combinations(3)
+print('Bracket Combinations')
 print(resultado)
 print('***************************************************************************************')
 
@@ -108,6 +109,7 @@ def find_intersection(strarray):
     return output
 
 # Using example
+print('Find Intersection:')
 print(find_intersection(["1, 3, 4, 7, 13", "1, 2, 4, 13, 15"]))
 print('***************************************************************************************')
 
@@ -151,6 +153,7 @@ def question_marks(str):
     return output
 
 # Using example
+print('Question Marks:')
 print(question_marks("9???1???9??1???9"))
 print(question_marks("aa6?9"))
 print(question_marks("acc?7??sss?3rr1??????5"))
@@ -172,6 +175,7 @@ def first_reverse(str):
     
     return reverse
 
+print('First Reverse:')
 print(first_reverse('Hola Mundo'))
 print('***************************************************************************************')
 
@@ -201,7 +205,51 @@ def tree_constructor(strArr):
 
     return True
 
+print('Tree Constructor:')
 print(tree_constructor(["(1,2)", "(2,4)", "(5,7)", "(7,2)", "(9,5)"]))
 print(tree_constructor(["(5,6)", "(6,3)", "(2,3)", "(12,5)"]))
 print(tree_constructor(["(10,20)"]))
 print('***************************************************************************************')
+
+""" Challenge #8:
+Bracket Matcher
+take the str parameter being passed and return 1 if the brackets are correctly matched 
+and each one is accounted for. Otherwise return 0. For example: if str is "(hello (world))", 
+then the output should be 1, but if str is "((hello (world))" 
+the the output should be 0 because the brackets do not correctly match up. 
+Only "(" and ")" will be used as brackets. If str contains no brackets return 1. """
+
+def bracket_matcher(str):
+
+    brackets = ''
+    open = 0
+    close = 0
+
+    for i in range (len(str)):
+        if str[i] == '(' or str[i] == ')':
+            brackets = brackets + str[i]
+    
+    if len(brackets) == 0:
+        return 1
+    
+    print(brackets)
+
+    for i in range (len(brackets)):
+        if brackets[i] == '(':
+            open = open + 1
+        else:
+            close = close + 1
+        
+        if close > open:
+            return 0
+
+    if open != close:
+        return 0
+
+    return 1
+
+print("Bracket Matcher:")
+print(bracket_matcher("(coder)(byte))"))
+print(bracket_matcher("(c(oder)) b(yte)"))
+print(bracket_matcher("dogs and cats"))
+print(bracket_matcher("the color re(d))()(()"))

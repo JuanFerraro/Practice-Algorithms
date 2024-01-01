@@ -93,24 +93,30 @@ Your goal is to return a comma-separated string containing the numbers
 that occur in elements of strArr in sorted order. If there is no intersection, 
 return the string false.
 """
-def find_intersection(strarray):
-    output = ''
-
-    str_1 = strarray[0].split(',')
-    str_2 = strarray[1].split(',')
+def find_intersection(strArr):
     
-    for i in range (len(str_1)):
-        for j in range (len(str_2)):
-            if str_1[i] == str_2[j]:
-                output = output + str_1[i] + ','
-    output = output[:-1]
-    output = output.replace(' ', '')
+    list1 = [int(num) for num in strArr[0].split(",")]
+    list2 = [int(num) for num in strArr[1].split(",")]
 
-    return output
+    set1 = set(list1)
+    set2 = set(list2)
+    
+    intersection = set1.intersection(set2)
+
+    if intersection:
+
+        result = ",".join(map(str, sorted(intersection)))
+        return result
+    else:
+        return "false"
 
 # Using example
 print('Find Intersection:')
 print(find_intersection(["1, 3, 4, 7, 13", "1, 2, 4, 13, 15"]))
+print(find_intersection(["1, 5, 6, 7, 10, 11, 12", "5, 6, 8, 11, 17"]))
+print(find_intersection(["2, 3, 4", "3"]))
+print(find_intersection(["1, 2, 3, 4, 5", "6, 7, 8, 9, 10"]))
+print(find_intersection(["1, 2, 4, 5, 6, 9", "2, 3, 4, 8, 10"]))
 print('***************************************************************************************')
 
 """ Challenge #6:
@@ -220,7 +226,7 @@ the the output should be 0 because the brackets do not correctly match up.
 Only "(" and ")" will be used as brackets. If str contains no brackets return 1. """
 
 def bracket_matcher(str):
-
+    """ return 1 if str.count("(") == str.count(")") else 0 """
     brackets = ''
     open = 0
     close = 0
@@ -231,8 +237,6 @@ def bracket_matcher(str):
     
     if len(brackets) == 0:
         return 1
-    
-    print(brackets)
 
     for i in range (len(brackets)):
         if brackets[i] == '(':
@@ -253,3 +257,50 @@ print(bracket_matcher("(coder)(byte))"))
 print(bracket_matcher("(c(oder)) b(yte)"))
 print(bracket_matcher("dogs and cats"))
 print(bracket_matcher("the color re(d))()(()"))
+print('********************************************************************************************')
+
+""" Challenge #9:
+Jaden Casing Strings:
+Your task is to convert strings to how they would be written by Jaden Smith. 
+The strings are actual quotes from Jaden Smith, 
+but they are not capitalized in the same way he originally typed them.
+Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
+Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real" """
+
+def jaden_casing_strings(noStrJaden):
+    str_jaden = ''
+
+    for i in range (len(noStrJaden)):
+        if noStrJaden[i].isalpha() and noStrJaden[i - 1] == ' ':
+            str_jaden += noStrJaden[i].upper()
+        elif noStrJaden[i].isalpha() and  i == 0:
+            str_jaden += noStrJaden[i].upper()
+        else:
+            str_jaden += noStrJaden[i].lower()
+
+    return str_jaden
+
+print('Jaden Casing Strings')
+print(jaden_casing_strings("another tweet just for 4un"))
+print(jaden_casing_strings(" a normal non jaden tweet"))
+print(jaden_casing_strings("SOmetHing tO Eat"))
+print('********************************************************************************************')
+
+""" Challenge #10:
+Descending Order
+Your task is to make a function that can take any non-negative integer as an argument 
+and return it with its digits in descending order. 
+Essentially, rearrange the digits to create the highest possible number.
+Example
+Input: 42145 Output: 54421 """
+
+def descending_order(num):
+    
+    str_num = str(num)
+    str_num = sorted(str_num, reverse=True)
+
+    return int(''.join(map(str, str_num)))
+
+print('Descending Order')
+print(descending_order(12873))
+print('********************************************************************************************')

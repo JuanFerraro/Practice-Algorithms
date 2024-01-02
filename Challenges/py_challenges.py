@@ -1,3 +1,5 @@
+import time
+
 """Challenge #1:
 Capital indexes
 Write a function named capital_indexes. The function takes a single parameter, which is a string. 
@@ -304,3 +306,33 @@ def descending_order(num):
 print('Descending Order')
 print(descending_order(12873))
 print('********************************************************************************************')
+
+""" Challenge # 11
+Find The Parity Outlier
+You are given an array (which will have a length of at least 3, but could be very large) 
+containing integers. The array is either entirely comprised of odd integers 
+or entirely comprised of even integers except for a single integer N. 
+Write a method that takes the array as an argument and returns this "outlier" N. """
+
+def find_the_parity_outlier(integers):
+    odds = 0
+    evens = 0
+
+    for i in range (len(integers)):
+        if integers[i] % 2 == 0:
+            evens += 1
+            x = integers[i]
+        else:
+            odds += 1
+            y = integers[i]
+    
+    if evens > odds: 
+        return y 
+    else: 
+        return x
+    
+    
+
+print('FIND PARITY OUTLIER')
+print(find_the_parity_outlier([2, 4, 6, 8, 10, 3]))
+

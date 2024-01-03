@@ -331,8 +331,31 @@ def find_the_parity_outlier(integers):
     else: 
         return x
     
-    
-
 print('FIND PARITY OUTLIER')
 print(find_the_parity_outlier([2, 4, 6, 8, 10, 3]))
+print('************************************************************************************')
 
+""" Challenge #12
+Camel case
+Complete the method/function so that it converts dash/underscore delimited words into camel casing. 
+The first word within the output should be capitalized only 
+if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). 
+The next words should be always capitalized. """
+
+def to_camel_case(text):
+
+    if len(text) > 0:
+        text = list(text)
+        camel_text = ''
+        for i in range (len(text)):
+            if text[i] == ' ' or text[i] == '_' or text[i] == '-':
+                text[i + 1] = text[i + 1].upper()
+            else:
+                camel_text += text[i]
+        return camel_text
+    return ""
+
+print('Camel Case')
+print(to_camel_case('to_camel-Case'))
+print(to_camel_case('A-pippi-Is Hungry'))
+print('************************************************************************************')

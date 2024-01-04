@@ -359,3 +359,39 @@ print('Camel Case')
 print(to_camel_case('to_camel-Case'))
 print(to_camel_case('A-pippi-Is Hungry'))
 print('************************************************************************************')
+
+""" Challenge #13:
+Isomorphic
+Two strings a and b are called isomorphic if there is a one to one mapping possible 
+for every character of a to every character of b. And all occurrences of every character 
+in a map to same character in b.
+In this kata you will create a function that return True if two given strings are isomorphic to each other, 
+and False otherwise. Remember that order is important. """
+
+def isomorph(a, b):
+
+    positions_a = []
+    positions_b = []
+
+    if len(a) == len(b):
+        for i in range(len(a)):
+            x = a.count(a[i])
+            y = b.count(b[i])
+            if x == y:
+                for j in range (len(a)):
+                    if a[j] == a[i]:
+                        positions_a.append(j)
+                    if b[j] == b[i]:
+                        positions_b.append(j)
+                if positions_a != positions_b:
+                    return False
+            else: 
+                return False
+            
+        return True
+                    
+    return False
+
+print('Isomorphic')
+print(isomorph("SEE", "SAW"))
+print('************************************************************************************')

@@ -395,3 +395,34 @@ def isomorph(a, b):
 print('Isomorphic')
 print(isomorph("SEE", "SAW"))
 print('************************************************************************************')
+
+""" Challenge #14:
+Count the number of Duplicates
+Write a function that will return the count of distinct case-insensitive alphabetic characters 
+and numeric digits that occur more than once in the input string. 
+The input string can be assumed to contain only alphabets (both uppercase and lowercase) 
+and numeric digits. """
+
+def duplicate_count(text):
+    
+    aux_text = []
+    count = 0
+
+    for i in range (len(text)):
+        x = text[i]
+        if not x in aux_text and not x.upper() in aux_text:
+            aux_text.append(x)
+            aux_text.append(x.upper())
+            x_times = 0
+            for j in range (len(text)):
+                if x == text[j] or x.upper() == text[j].upper():
+                    x_times += 1
+            if x_times > 1:
+                count += 1
+    
+    return count
+
+print('Duplicate Count')
+print(duplicate_count("abcdeaa"))
+print(duplicate_count("Indivisibilities"))
+print(duplicate_count("abcdeaB"))

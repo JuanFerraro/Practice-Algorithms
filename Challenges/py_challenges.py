@@ -426,3 +426,38 @@ print('Duplicate Count')
 print(duplicate_count("abcdeaa"))
 print(duplicate_count("Indivisibilities"))
 print(duplicate_count("abcdeaB"))
+print('************************************************************************************')
+
+""" Challenge #15:
+Binary
+Implement a function that adds two numbers together and returns their sum in binary. 
+The conversion can be done before, or after the addition.
+The binary number returned should be a string. """
+
+def add_binary(a,b):
+    """_takes two integers and returns their binary sum in string_
+
+    Args:
+        a (_int_): _number #1_
+        b (_int_): _number #2_
+
+    Returns:
+        _str_: _binary number of the sum_
+    """
+    sum = a + b
+    binary = []
+    aux = sum
+    
+    while aux >= 1:
+        if aux % 2 != 0 or aux == 1:
+            binary.append("1")
+        else:
+            binary.append("0")
+        aux = aux // 2
+    
+    return ''.join(reversed(binary))
+
+print('Binary Add')
+print(add_binary(51,12))
+print(add_binary(1,1))
+print('************************************************************************************')

@@ -461,3 +461,74 @@ print('Binary Add')
 print(add_binary(51,12))
 print(add_binary(1,1))
 print('************************************************************************************')
+
+""" Challenge #16:
+ATM Pin 
+ATM machines allow 4 or 6 digit PIN codes and
+PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+If the function is passed a valid PIN string, return true, else return false. """
+
+def validate_pin(pin):
+    """_Takes a str pin and return true or false if it contains exactly 4 or 6 digits_
+
+    Args:
+        pin (_str_): _string with the code_
+
+    Returns:
+        _boolen_: _True if its valid and False if its invalid_
+    """
+    if len(pin) == 4 or len(pin) == 6:
+        for i in range (len(pin)):
+            if not pin[i].isdigit():
+                return False
+        return True
+    else:
+        return False
+    
+print('ATM PIN')
+print(validate_pin("1010"))
+print(validate_pin("1a10"))
+print(validate_pin("131000"))
+print('************************************************************************************')
+
+""" Challenge #17:
+Factory Printer
+In a factory a printer prints labels for boxes. 
+For one kind of boxes the printer has to use colors which, 
+for the sake of simplicity, are named with letters from a to m.
+the colors used by the printer are recorded in a control string. 
+For example a "good" control string would be aaabbbbhaijjjm meaning that the printer used 
+three times color a, four times color b, one time color h then one time color a...
+Sometimes there are problems: lack of colors, technical malfunction and 
+a "bad" control string is produced e.g. aaaxbbbbyyhwawiwjjjwwm with letters not from a to m.
+You have to write a function printer_error which given a string will return 
+the error rate of the printer as a string representing a rational whose numerator 
+is the number of errors and the denominator the length of the control string. 
+Don't reduce this fraction to a simpler expression.
+The string has a length greater or equal to one and contains only letters from ato z. """
+
+def printer_error(s):
+    """_Takes a string and return how many invalid letters are there_
+
+    Args:
+        s (_str_): _string of printed colors_
+
+    Returns:
+        _str_: _fraction of errors_
+    """
+    letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"]
+    errors = 0
+    output = ''
+    
+    for i in range (len(s)):
+        if not s[i] in letters:
+            errors += 1
+    
+    output = output + str(errors) + "/" + str(len(s))
+    
+    return output
+
+print('Factory Printer')
+print(printer_error("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"))
+print(printer_error("kkkwwwaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyzuuuuu"))
+print('************************************************************************************')

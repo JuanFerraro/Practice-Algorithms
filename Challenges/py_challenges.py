@@ -532,3 +532,39 @@ print('Factory Printer')
 print(printer_error("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"))
 print(printer_error("kkkwwwaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyzuuuuu"))
 print('************************************************************************************')
+
+""" Challenge #18:
+Tribonacci Sequence
+As the name may already reveal, it works basically like a Fibonacci, 
+but summing the last 3 (instead of 2) numbers of the sequence to generate the next.
+Well, you may have guessed it by now, but to be clear: 
+you need to create a fibonacci function that given a signature array/list, 
+returns the first n elements - signature included of the so seeded sequence.
+Signature will always contain 3 numbers; n will always be a non-negative number; 
+if n == 0, then return an empty array. """
+
+def tribonacci(signature, n):
+    """_Takes a signature and and integer n and generate the TRIbonacci sequence n times_
+
+    Args:
+        signature (_arr_): _array of integers to start the sequence_
+        n (_int_): _number of required sequence_
+
+    Returns:
+        _arr_: _sequence array_
+    """
+    sequence = signature
+    
+    if n == 0:
+        return []
+    else:      
+        for i in range (n - 3):
+            sequence.append(sequence[i] + sequence[i + 1] + sequence[i + 2])
+        
+        return sequence[:n]
+
+print("Tribonacci")
+print(tribonacci([1, 1, 1], 10))
+print(tribonacci([1, 1, 1], 1))
+print(tribonacci([300, 200, 100], 0))
+print('************************************************************************************')

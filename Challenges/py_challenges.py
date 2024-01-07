@@ -568,3 +568,42 @@ print(tribonacci([1, 1, 1], 10))
 print(tribonacci([1, 1, 1], 1))
 print(tribonacci([300, 200, 100], 0))
 print('************************************************************************************')
+
+""" Challenge #19:
+Equal Sides Of An Array
+You are going to be given an array of integers. Your job is to take that array and 
+find an index N where the sum of the integers to the left of N 
+is equal to the sum of the integers to the right of N. 
+If there is no index that would make this happen, return -1. 
+Index 0 is the place where the left side and right side are equal.  """
+
+def find_even_index(arr):
+    """_takes an array and 
+        find an index N where the sum of the int to the left of N 
+        is equal to the sum of the int to the right of N_
+
+    Args:
+        arr (_array_): _integers array_
+
+    Returns:
+        _int_: _index when the sums are equal or -1 if it doesnt exist_
+    """
+
+    total_sum = sum(arr)
+    left_sum = 0
+
+    for i, num in enumerate(arr):
+        total_sum -= num
+
+        if left_sum == total_sum:
+            return i
+
+        left_sum += num
+
+    return -1
+            
+    
+print("Equal Sides of an Array:")
+print(find_even_index([-3,2,1,0]))
+print(find_even_index([1,2,3,4,3,2,1]))
+print(find_even_index([0,0,0,0,0]))

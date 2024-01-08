@@ -1,4 +1,3 @@
-import time
 
 """Challenge #1:
 Capital indexes
@@ -116,9 +115,6 @@ def find_intersection(strArr):
 print('Find Intersection:')
 print(find_intersection(["1, 3, 4, 7, 13", "1, 2, 4, 13, 15"]))
 print(find_intersection(["1, 5, 6, 7, 10, 11, 12", "5, 6, 8, 11, 17"]))
-print(find_intersection(["2, 3, 4", "3"]))
-print(find_intersection(["1, 2, 3, 4, 5", "6, 7, 8, 9, 10"]))
-print(find_intersection(["1, 2, 4, 5, 6, 9", "2, 3, 4, 8, 10"]))
 print('***************************************************************************************')
 
 """ Challenge #6:
@@ -607,3 +603,42 @@ print("Equal Sides of an Array:")
 print(find_even_index([-3,2,1,0]))
 print(find_even_index([1,2,3,4,3,2,1]))
 print(find_even_index([0,0,0,0,0]))
+print('************************************************************************************')
+
+""" Challenge #20:
+Roman Numeral
+Create a function taking a positive integer between 1 and 3999 (both included) 
+as its parameter and returning a string containing 
+the Roman Numeral representation of that integer."""
+
+def roman_representation(n):
+    """_Takes a positive integer and return a string with the
+        Roman numeral representation of that integer_
+
+    Args:
+        n (_int_): _integer to representate in Roman Numeral_
+
+    Returns:
+        _str_: _Roman Numeral Representation of that integer_
+    """
+
+    if n >= 1 and n <= 3999:
+        symbols = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
+        values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        roman_numeral = ""
+
+        for i in range(len(values)):
+            while n >= values[i]:
+                roman_numeral += symbols[i]
+                n -= values[i]
+
+        return roman_numeral
+    else:
+        return False  
+
+
+print('Roman Numeral Representation')
+print(roman_representation(21))
+print(roman_representation(44))
+print(roman_representation(1012))
+print('************************************************************************************')

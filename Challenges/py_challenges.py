@@ -686,11 +686,11 @@ SS = seconds, padded to 2 digits, range: 00 - 59 """
 def make_readable(seconds):
     """_Takes # seconds and make it a readable time for humans_
 
-    Args:
-        seconds (_int_): _Seconds quantity_
+        Args:
+            seconds (_int_): _Seconds quantity_
 
-    Returns:
-        _str_: _Time_
+        Returns:
+            _str_: _Time_
     """
 
     hours = seconds // 60 // 60
@@ -710,3 +710,91 @@ def make_readable(seconds):
 
 print('Human Time:')
 print(make_readable(86399)) #23:59:59
+print('************************************************************************************')
+
+""" Challenge #27:
+Two Sum
+Write a function that takes an array of numbers (integers for the tests) and a target number. 
+It should find two different items in the array that, when added together, give the target value. 
+The indices of these items should then be returned in a tuple / list (depending on your language) 
+like so: (index1, index2). """
+
+def two_sum(numbers, target):
+    """_Take an array of integers and return the first 2 indexes where added 
+        together they give the value of the target_
+
+    Args:
+        numbers (_array_): _Integers array_
+        target (_int_): _Sum to find_
+
+    Returns:
+        _tuple_: _tuple with the 2 first indexes where added 
+                together they give the value of the target_
+    """
+
+    output = []
+    
+    for i in range (len(numbers)):
+        for j in range (len(numbers)):
+            if i != j:
+                if numbers[i] + numbers[j] == target:
+                    if not i in output and not j in output:
+                        output.append(i)
+                        output.append(j)
+                        return tuple(output)
+
+print('Two Sum')
+print(two_sum([1, 2, 3], 4))
+print('************************************************************************************')
+
+""" Challenge #28:
+Human readable duration format
+Your task in order to complete this Kata is to write a function which formats a duration, 
+given as a number of seconds, in a human-friendly way.
+The function must accept a non-negative integer. If it is zero, it just returns "now". 
+Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds. """
+
+def format_duration(seconds):
+    """_Formats a duration given in seconds into a human-friendly string_.
+
+    Args:
+        seconds (_int_): _The non-negative integer representing the duration in seconds_.
+
+    Returns:
+        str: _A human-readable string expressing the duration in terms of years, days, hours, minutes, and seconds.
+             The string follows the specified rules for formatting and uses appropriate units, plurals, and separators.
+             If the duration is 0 seconds, the function returns 'now_'.
+    """
+
+    if seconds == 0:
+        return 'now'
+    
+    output = []
+
+    time_units = [('year', 365 * 24 * 60 * 60),
+                  ('day', 24 * 60 * 60),
+                  ('hour', 60 * 60),
+                  ('minute', 60),
+                  ('second', 1)]
+
+    for unit, duration_in_seconds in time_units:
+        if seconds >= duration_in_seconds:
+            num_units = seconds // duration_in_seconds
+            seconds = seconds - (duration_in_seconds * num_units)
+            if num_units > 1:
+                output.append(str(num_units) + " " + unit + "s")
+            else:
+                output.append(str(num_units) + " " + unit)
+
+    if len(output) > 1:
+        final_string = ', '.join(output[:-1]) + ' and ' + output[-1]
+    else:
+        final_string = output[0]
+
+    return final_string
+
+print('Human readable duration format:')
+print(format_duration(242062374))
+print(format_duration(3662))
+print('************************************************************************************')
+

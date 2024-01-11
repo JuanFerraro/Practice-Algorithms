@@ -793,8 +793,49 @@ def format_duration(seconds):
 
     return final_string
 
-print('Human readable duration format:')
+print('Human readable duration format')
 print(format_duration(242062374))
 print(format_duration(3662))
 print('************************************************************************************')
 
+""" Challenge #29:
+Nesting Structure Comparison
+Complete the function/method (depending on the language) to return True/False 
+when its argument is an array that has the same nesting structures 
+and same corresponding length of nested arrays as the first array. """
+
+def same_structure_as(original,other):
+    """_It returna True/False 
+        when its argument is an array that has the same nesting structures_
+
+    Args:
+        original (_list_): _The original list or element that serves as the reference for structure comparison_
+        other (_list_): _The other list or element to be compared with the original for structure similarity_
+
+    Returns:
+        _bool_: _True if the structures are similar, False otherwise_
+    """
+    if (type(original) == str and type(other) in (int, str)) or (type(original) == int and type(other) == str):
+        return True
+    elif type(original) != type(other):
+        return False
+    
+    if type(original) == list and type(other) == list:
+
+        if len(original) != len(other):
+            return False
+        
+        for i in range(len(original)):
+            if not same_structure_as(original[i], other[i]):
+                return False
+            
+        return True
+    else:
+        return True
+            
+
+print('Same Structure')
+print(same_structure_as([1,[1,1]],[2,[2,2]]))
+print(same_structure_as([1,[1,1]],[[2,2],2]))
+print(same_structure_as([1,'[',']'],['[',']',1]))
+print('************************************************************************************')

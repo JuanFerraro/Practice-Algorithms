@@ -55,9 +55,6 @@ def permutations(s):
 
     return all_permutations
 
-
-
-
 print('So Many Permutations!')
 print(permutations('a'))
 print(permutations('abcd'))
